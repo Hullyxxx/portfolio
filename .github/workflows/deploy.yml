@@ -5,6 +5,8 @@ name: CI/CD Docker Portfolio
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   # Job 1: Build và đẩy image lên Docker Hub
@@ -37,6 +39,10 @@ jobs:
     # Chạy sau khi 'build-and-push' hoàn thành
     needs: build-and-push 
     runs-on: ubuntu-latest
+
+    # Chỉ chạy job 'deploy' nếu sự kiện là 'push' vào nhánh 'main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
     steps:
       - name: Deploy to Server
         # Sử dụng action SSH
