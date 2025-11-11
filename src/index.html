@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Cá Nhân Của [Tên Của Bạn] - [Nghề Nghiệp Của Bạn]</title>
+    <!-- Tải Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tải font Inter từ Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Icon từ Font Awesome (hoặc bạn có thể dùng heroicons, lucide-icons) --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        html {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a78bfa; /* violet-400 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6; /* violet-500 */
+        }
+
+        /* Hero typing effect */
+        .typing-effect::after {
+            content: '|';
+            display: inline-block;
+            animation: blink-caret .75s step-end infinite;
+            font-weight: 300; /* Thin caret */
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: currentColor; }
+        }
+
+        /* Basic reveal animation on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Project Card Hover Effect */
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-purple-50 text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- Header & Navigation --><header class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-all duration-300 ease-in-out">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Tên/Logo --><a href="#" class="text-3xl font-extrabold text-violet-700 hover:text-violet-900 transition duration-300">
+                [Tên Của Bạn]
+            </a>
+
+            <!-- Menu cho máy tính --><div class="hidden md:flex space-x-8">
+                <a href="#hero" class="nav-link">Trang chủ</a>
+                <a href="#about" class="nav-link">Giới thiệu</a>
+                <a href="#experience" class="nav-link">Kinh nghiệm</a>
+                <a href="#projects" class="nav-link">Dự án</a>
+                <a href="#skills" class="nav-link">Kỹ năng</a>
+                <a href="#testimonials" class="nav-link">Phản hồi</a>
+                <a href="#contact" class="nav-link">Liên hệ</a>
+            </div>
+
+            <!-- Nút menu (di động) --><button id="mobile-menu-button" class="md:hidden text-gray-900 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition duration-300">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Menu (di động) --><div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-md shadow-xl absolute w-full left-0 z-40">
+            <a href="#hero" class="mobile-nav-link">Trang chủ</a>
+            <a href="#about" class="mobile-nav-link">Giới thiệu</a>
+            <a href="#experience" class="mobile-nav-link">Kinh nghiệm</a>
+            <a href="#projects" class="mobile-nav-link">Dự án</a>
+            <a href="#skills" class="mobile-nav-link">Kỹ năng</a>
+            <a href="#testimonials" class="mobile-nav-link">Phản hồi</a>
+            <a href="#contact" class="mobile-nav-link">Liên hệ</a>
+            <a href="#contact" class="mobile-nav-link text-violet-700 font-semibold hover:bg-violet-50">
+                <i class="fas fa-paper-plane mr-2"></i> Thuê Tôi
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content --><main class="container mx-auto px-6 py-12 md:py-16">
+
+        <!-- Hero Section --><section id="hero" class="text-center py-24 md:py-36 min-h-[calc(100vh-80px)] flex flex-col justify-center items-center relative overflow-hidden">
+            <!-- Background Blob/Shape (Optional, for visual flair) --><div class="absolute inset-0 bg-gradient-to-tr from-violet-200/50 to-transparent rounded-full opacity-30 blur-3xl scale-150 animate-pulse-slow"></div>
+
+            <div class="relative z-10 reveal">
+                <p class="text-lg md:text-xl text-gray-600 mb-4 font-medium animate-fade-in-down">Chào bạn, tôi là</p>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-4 leading-tight animate-fade-in">
+                    [Tên Của Bạn]
+                </h1>
+                <h2 class="text-3xl md:text-5xl text-violet-600 font-light mb-8 typing-effect animate-fade-in-up">
+                    <span id="job-title"></span>
+                </h2>
+                <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-12 animate-fade-in-up delay-200">
+                    Tôi biến những ý tưởng thành hiện thực số, tạo ra trải nghiệm người dùng ấn tượng và giải pháp công nghệ bền vững.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 reveal delay-400">
+                    <a href="#projects" class="btn-primary group">
+                        <i class="fas fa-laptop-code mr-2 group-hover:animate-bounce-h"></i> Xem Dự Án Của Tôi
+                    </a>
+                    <a href="#contact" class="btn-secondary group">
+                        <i class="fas fa-envelope mr-2 group-hover:animate-pulse-fast"></i> Liên Hệ Với Tôi
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section --><section id="about" class="py-20 md:py-24 bg-white rounded-3xl shadow-2xl overflow-hidden reveal">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-center mb-16">Về Tôi</h2>
+                <div class="flex flex-col md:flex-row items-center gap-16">
+                    <!-- Ảnh đại diện --><div class="md:w-1/3 flex-shrink-0 relative reveal delay-200">
+                        <div class="absolute inset-0 bg-violet-200 rounded-full scale-105 opacity-60 animate-blob-pulse"></div>
+                        <img src="https://placehold.co/500x500/A78BFA/FFFFFF?text=Ảnh+Của+Bạn" 
+                             alt="Ảnh chân dung của [Tên Của Bạn]" 
+                             class="rounded-full w-72 h-72 md:w-80 md:h-80 mx-auto object-cover shadow-xl border-8 border-white relative z-10 transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <!-- Nội dung giới thiệu --><div class="md:w-2/3 reveal delay-400">
+                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
+                            Xin chào! Tôi là một <strong class="text-violet-600">[Nghề Nghiệp]</strong> với <strong class="text-violet-600">[Số]</strong> năm kinh nghiệm, chuyên về <span class="text-purple-600 font-semibold">[Lĩnh vực chuyên môn chính]</span>. Hành trình của tôi trong thế giới công nghệ bắt đầu từ <span class="font-medium text-gray-900">[Năm hoặc sự kiện]</span>, và từ đó, tôi đã không ngừng học hỏi và đổi mới.
+                        </p>
+                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed mb-6">
+                            Tôi có niềm đam mê mãnh liệt trong việc <span class="italic text-purple-700">[mô tả một đam mê cụ thể, ví dụ: "giải quyết các vấn đề phức tạp bằng mã nguồn thanh lịch," "thiết kế giao diện người dùng trực quan và đẹp mắt," hoặc "xây dựng các hệ thống backend mạnh mẽ và có khả năng mở rộng"]</span>. Tôi tin rằng công nghệ tốt nhất là công nghệ vô hình, giúp con người đạt được mục tiêu một cách dễ dàng và hiệu quả.
+                        </p>
+                        <p class="text-gray-700 text-lg md:text-xl leading-relaxed">
+                            Khi không đắm mình vào các dòng code, bạn có thể tìm thấy tôi <span class="text-violet-500 font-medium">[Sở thích của bạn, ví dụ: "chơi guitar, khám phá những con đường mòn mới, hoặc đọc sách khoa học viễn tưởng"]</span>. Tôi luôn sẵn lòng kết nối và trao đổi về các dự án thú vị!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section (Timeline) --><section id="experience" class="py-20 md:py-24 mt-16 reveal">
+            <h2 class="section-title text-center mb-16">Kinh Nghiệm & Học Vấn</h2>
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line --><div class="absolute h-full border-l-4 border-violet-400 left-1/2 transform -translate-x-1/2 hidden md:block"></div>
+
+                <!-- Timeline Items --><div class="space-y-12">
+                    <!-- Experience 1 --><div class="flex flex-col md:flex-row md:justify-between items-center w-full reveal delay-100">
+                        <div class="md:w-5/12 text-right p-4">
+                            <h3 class="text-xl font-semibold text-gray-900">[Tên Chức Vụ 1]</h3>
+                            <p class="text-violet-600 font-medium">[Tên Công Ty/Trường Học] - [Địa điểm]</p>
+                            <span class="text-sm text-gray-500">[Tháng Năm Bắt Đầu] – [Tháng Năm Kết Thúc]</span>
+                        </div>
+                        <div class="hidden md:block w-2/12 relative">
+                            <div class="absolute inset-0 flex justify-center items-center">
+                                <div class="w-5 h-5 bg-violet-600 rounded-full shadow-lg border-4 border-white"></div>
+                            </div>
+                        </div>
+                        <div class="md:w-5/12 p-4 bg-white rounded-xl shadow-lg border-l-4 border-violet-500">
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li>Mô tả thành tựu/trách nhiệm chính 1.</li>
+                                <li>Mô tả thành tựu/trách nhiệm chính 2.</li>
+                                <li>Mô tả thành tựu/trách nhiệm chính 3.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experience 2 --><div class="flex flex-col md:flex-row md:justify-between items-center w-full reveal delay-200">
+                        <div class="md:w-5/12 p-4 bg-white rounded-xl shadow-lg border-r-4 border-purple-500 order-2 md:order-1">
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li>Mô tả thành tựu/trách nhiệm chính 1.</li>
+                                <li>Mô tả thành tựu/trách nhiệm chính 2.</li>
+                            </ul>
+                        </div>
+                        <div class="hidden md:block w-2/12 relative order-1 md:order-2">
+                            <div class="absolute inset-0 flex justify-center items-center">
+                                <div class="w-5 h-5 bg-purple-600 rounded-full shadow-lg border-4 border-white"></div>
+                            </div>
+                        </div>
+                        <div class="md:w-5/12 text-left p-4 order-1 md:order-3">
+                            <h3 class="text-xl font-semibold text-gray-900">[Tên Chức Vụ 2]</h3>
+                            <p class="text-purple-600 font-medium">[Tên Công Ty/Trường Học] - [Địa điểm]</p>
+                            <span class="text-sm text-gray-500">[Tháng Năm Bắt Đầu] – [Tháng Năm Kết Thúc]</span>
+                        </div>
+                    </div>
+
+                    <!-- Experience 3 (Education) --><div class="flex flex-col md:flex-row md:justify-between items-center w-full reveal delay-300">
+                        <div class="md:w-5/12 text-right p-4">
+                            <h3 class="text-xl font-semibold text-gray-900">[Tên Bằng Cấp/Khóa học]</h3>
+                            <p class="text-indigo-600 font-medium">[Tên Trường Học] - [Địa điểm]</p>
+                            <span class="text-sm text-gray-500">[Tháng Năm Bắt Đầu] – [Tháng Năm Kết Thúc]</span>
+                        </div>
+                        <div class="hidden md:block w-2/12 relative">
+                            <div class="absolute inset-0 flex justify-center items-center">
+                                <div class="w-5 h-5 bg-indigo-600 rounded-full shadow-lg border-4 border-white"></div>
+                            </div>
+                        </div>
+                        <div class="md:w-5/12 p-4 bg-white rounded-xl shadow-lg border-l-4 border-indigo-500">
+                            <ul class="list-disc list-inside text-gray-700">
+                                <li>Chuyên ngành/Môn học chính.</li>
+                                <li>Các hoạt động/dự án nổi bật.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section --><section id="projects" class="py-20 md:py-24 mt-16 reveal">
+            <h2 class="section-title text-center mb-16">Dự Án Nổi Bật</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                
+                <!-- Project Card 1 --><div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden relative group transform hover:-translate-y-2 transition duration-500 hover:shadow-2xl reveal delay-100">
+                    <img src="https://placehold.co/600x400/8B5CF6/FFFFFF/png?text=Dự+Án+1" 
+                         alt="Ảnh chụp màn hình Dự Án 1" 
+                         class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Tên Dự Án 1</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Sử dụng: <span class="font-medium text-violet-600">React, Node.js, MongoDB</span>
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Mô tả ngắn gọn về dự án này, thách thức đã vượt qua và những gì bạn đã học được.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-violet-600 font-semibold hover:text-violet-800 transition duration-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Xem Live
+                            </a>
+                            <a href="#" class="text-gray-500 font-semibold hover:text-gray-700 transition duration-300 flex items-center">
+                                <i class="fab fa-github mr-2"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Optional: Hover Overlay --><div class="project-overlay absolute inset-0 bg-violet-800 bg-opacity-90 flex items-center justify-center p-6 text-white text-center opacity-0 transform translate-y-full transition-all duration-500 ease-in-out">
+                        <div>
+                            <p class="text-lg font-bold mb-4">Một giải pháp quản lý dự án hiệu quả cho các đội nhóm nhỏ.</p>
+                            <a href="#" class="bg-white text-violet-800 px-5 py-2 rounded-full font-medium hover:bg-gray-200 transition duration-300">Tìm hiểu thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 --><div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden relative group transform hover:-translate-y-2 transition duration-500 hover:shadow-2xl reveal delay-200">
+                    <img src="https://placehold.co/600x400/C084FC/FFFFFF/png?text=Dự+Án+2" 
+                         alt="Ảnh chụp màn hình Dự Án 2" 
+                         class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Tên Dự Án 2</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Sử dụng: <span class="font-medium text-violet-600">Vue.js, Firebase, Tailwind CSS</span>
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Mô tả ngắn gọn về dự án này, thách thức đã vượt qua và những gì bạn đã học được.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-violet-600 font-semibold hover:text-violet-800 transition duration-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Xem Live
+                            </a>
+                            <a href="#" class="text-gray-500 font-semibold hover:text-gray-700 transition duration-300 flex items-center">
+                                <i class="fab fa-github mr-2"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-purple-800 bg-opacity-90 flex items-center justify-center p-6 text-white text-center opacity-0 transform translate-y-full transition-all duration-500 ease-in-out">
+                        <div>
+                            <p class="text-lg font-bold mb-4">Ứng dụng quản lý công việc cá nhân với giao diện sạch sẽ.</p>
+                            <a href="#" class="bg-white text-purple-800 px-5 py-2 rounded-full font-medium hover:bg-gray-200 transition duration-300">Tìm hiểu thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 --><div class="project-card bg-white rounded-2xl shadow-xl overflow-hidden relative group transform hover:-translate-y-2 transition duration-500 hover:shadow-2xl reveal delay-300">
+                    <img src="https://placehold.co/600x400/9333EA/FFFFFF/png?text=Dự+Án+3" 
+                         alt="Ảnh chụp màn hình Dự Án 3" 
+                         class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-2">Tên Dự Án 3</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Sử dụng: <span class="font-medium text-violet-600">Python, Django, PostgreSQL</span>
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Mô tả ngắn gọn về dự án này, thách thức đã vượt qua và những gì bạn đã học được.
+                        </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-violet-600 font-semibold hover:text-violet-800 transition duration-300 flex items-center">
+                                <i class="fas fa-external-link-alt mr-2"></i> Xem Live
+                            </a>
+                            <a href="#" class="text-gray-500 font-semibold hover:text-gray-700 transition duration-300 flex items-center">
+                                <i class="fab fa-github mr-2"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-indigo-800 bg-opacity-90 flex items-center justify-center p-6 text-white text-center opacity-0 transform translate-y-full transition-all duration-500 ease-in-out">
+                        <div>
+                            <p class="text-lg font-bold mb-4">Nền tảng thương mại điện tử tùy chỉnh với các tính năng nâng cao.</p>
+                            <a href="#" class="bg-white text-indigo-800 px-5 py-2 rounded-full font-medium hover:bg-gray-200 transition duration-300">Tìm hiểu thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section --><section id="skills" class="py-20 md:py-24 mt-16 bg-white rounded-3xl shadow-2xl reveal">
+            <div class="container mx-auto px-6">
+                <h2 class="section-title text-center mb-16">Kỹ Năng Của Tôi</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Category: Frontend --><div class="bg-indigo-50 p-8 rounded-xl shadow-md reveal delay-100">
+                        <h3 class="text-2xl font-bold text-indigo-700 mb-6 flex items-center">
+                            <i class="fas fa-palette mr-3 text-indigo-500"></i> Frontend Development
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript (ES6+)</span>
+                            <span class="skill-tag">React.js</span>
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">Angular</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">Sass/Less</span>
+                        </div>
+                    </div>
+
+                    <!-- Category: Backend --><div class="bg-purple-50 p-8 rounded-xl shadow-md reveal delay-200">
+                        <h3 class="text-2xl font-bold text-purple-700 mb-6 flex items-center">
+                            <i class="fas fa-server mr-3 text-purple-500"></i> Backend Development
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express.js</span>
+                            <span class="skill-tag">Python (Django/Flask)</span>
+                            <span class="skill-tag">Ruby on Rails</span>
+                            <span class="skill-tag">PHP (Laravel)</span>
+                            <span class="skill-tag">RESTful APIs</span>
+                            <span class="skill-tag">GraphQL</span>
+                        </div>
+                    </div>
+
+                    <!-- Category: Databases & DevOps --><div class="bg-violet-50 p-8 rounded-xl shadow-md reveal delay-300">
+                        <h3 class="text-2xl font-bold text-violet-700 mb-6 flex items-center">
+                            <i class="fas fa-database mr-3 text-violet-500"></i> Databases & DevOps
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Firebase</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Git & GitHub</span>
+                            <span class="skill-tag">CI/CD</span>
+                        </div>
+                    </div>
+
+                    <!-- Category: Tools & Design --><div class="bg-pink-50 p-8 rounded-xl shadow-md reveal delay-400">
+                        <h3 class="text-2xl font-bold text-pink-700 mb-6 flex items-center">
+                            <i class="fas fa-tools mr-3 text-pink-500"></i> Tools & Design
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Adobe XD</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">Jira/Trello</span>
+                            <span class="skill-tag">Thiết kế UI/UX</span>
+                            <span class="skill-tag">Wireframing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section --><section id="testimonials" class="py-20 md:py-24 mt-16 reveal">
+            <h2 class="section-title text-center mb-16">Những Gì Khách Hàng Nói</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                <!-- Testimonial 1 --><div class="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-violet-500 transform hover:scale-105 transition duration-300 reveal delay-100">
+                    <p class="text-lg text-gray-700 italic mb-6">
+                        "Tôi thực sự ấn tượng với khả năng biến ý tưởng thành sản phẩm thực tế của [Tên Của Bạn]. Dự án của chúng tôi đã hoàn thành vượt mong đợi, đúng thời hạn và ngân sách."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/E0E7FF/6366F1?text=A" alt="Ảnh đại diện khách hàng" class="w-16 h-16 rounded-full mr-4 object-cover border-2 border-violet-300">
+                        <div>
+                            <p class="font-bold text-gray-900">Người Giới Thiệu 1</p>
+                            <p class="text-sm text-gray-600">Chức vụ, Công ty</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 --><div class="bg-white p-8 rounded-2xl shadow-xl border-l-4 border-purple-500 transform hover:scale-105 transition duration-300 reveal delay-200">
+                    <p class="text-lg text-gray-700 italic mb-6">
+                        "[Tên Của Bạn] là một thành viên đội nhóm tuyệt vời, luôn chủ động và mang đến những giải pháp sáng tạo. Kỹ năng giao tiếp và làm việc nhóm của họ cũng rất xuất sắc."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/FCE7F3/EC4899?text=B" alt="Ảnh đại diện khách hàng" class="w-16 h-16 rounded-full mr-4 object-cover border-2 border-purple-300">
+                        <div>
+                            <p class="font-bold text-gray-900">Người Giới Thiệu 2</p>
+                            <p class="text-sm text-gray-600">Chức vụ, Công ty</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog/Articles Section (Optional) --><section id="blog" class="py-20 md:py-24 mt-16 reveal">
+            <h2 class="section-title text-center mb-16">Bài Viết & Suy Nghĩ Của Tôi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                <!-- Article Card 1 --><a href="#" class="block bg-white rounded-2xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300 group reveal delay-100">
+                    <img src="https://placehold.co/600x300/6D28D9/FFFFFF?text=Hình+Bài+Viết+1" alt="Hình ảnh bài viết" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-violet-700 transition duration-300">
+                            Tiêu đề bài viết số 1
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            <i class="far fa-calendar-alt mr-2 text-violet-500"></i> Ngày đăng: 01/01/2024
+                        </p>
+                        <p class="text-gray-700">
+                            Một đoạn tóm tắt ngắn gọn về nội dung bài viết này. Chia sẻ kiến thức hoặc kinh nghiệm cá nhân.
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Article Card 2 --><a href="#" class="block bg-white rounded-2xl shadow-xl overflow-hidden transform hover:-translate-y-2 transition duration-300 group reveal delay-200">
+                    <img src="https://placehold.co/600x300/A78BFA/FFFFFF?text=Hình+Bài+Viết+2" alt="Hình ảnh bài viết" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2 group-hover:text-violet-700 transition duration-300">
+                            Tiêu đề bài viết số 2
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            <i class="far fa-calendar-alt mr-2 text-violet-500"></i> Ngày đăng: 15/02/2024
+                        </p>
+                        <p class="text-gray-700">
+                            Một đoạn tóm tắt ngắn gọn về nội dung bài viết này. Chia sẻ kiến thức hoặc kinh nghiệm cá nhân.
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Contact Section --><section id="contact" class="py-20 md:py-24 mt-16 reveal">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="section-title mb-6">Hãy Kết Nối!</h2>
+                <p class="text-lg text-gray-700 mb-10">
+                    Tôi luôn sẵn lòng cho các cơ hội hợp tác mới, thử thách thú vị hoặc đơn giản là một cuộc trò chuyện về công nghệ. Đừng ngần ngại gửi cho tôi một tin nhắn!
+                </p>
+            </div>
+            <form action="#" method="POST" class="max-w-xl mx-auto bg-white p-10 rounded-3xl shadow-2xl border-t-4 border-violet-500 reveal delay-200">
+                <div class="mb-6">
+                    <label for="name" class="block text-gray-700 font-semibold mb-2">Họ Tên</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Tên đầy đủ của bạn" required>
+                </div>
+                <div class="mb-6">
+                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="email@cuaban.com" required>
+                </div>
+                <div class="mb-6">
+                    <label for="subject" class="block text-gray-700 font-semibold mb-2">Chủ đề</label>
+                    <input type="text" id="subject" name="subject" class="form-input" placeholder="Chủ đề tin nhắn của bạn">
+                </div>
+                <div class="mb-8">
+                    <label for="message" class="block text-gray-700 font-semibold mb-2">Lời nhắn</label>
+                    <textarea id="message" name="message" rows="6" class="form-input" placeholder="Lời nhắn chi tiết của bạn..." required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-primary group">
+                        <i class="fas fa-paper-plane mr-2 group-hover:animate-wiggle"></i> Gửi Lời Nhắn
+                    </button>
+                </div>
+            </form>
+            <div class="text-center mt-12 text-gray-700 reveal delay-300">
+                <p class="mb-4">Hoặc tìm tôi trên:</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="mailto:[Email Của Bạn]" class="text-violet-600 hover:text-violet-800 transition duration-300 text-3xl" aria-label="Email">
+                        <i class="fas fa-at"></i>
+                    </a>
+                    <a href="#" class="text-violet-600 hover:text-violet-800 transition duration-300 text-3xl" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="text-violet-600 hover:text-violet-800 transition duration-300 text-3xl" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-violet-600 hover:text-violet-800 transition duration-300 text-3xl" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer --><footer class="bg-gray-900 text-gray-400 mt-20 py-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <!-- Copyright & Brand --><div class="mb-6 md:mb-0">
+                <a href="#" class="text-3xl font-extrabold text-violet-400 hover:text-violet-300 transition duration-300">
+                    [Tên Của Bạn]
+                </a>
+                <p class="mt-2">&copy; 2024 [Tên Của Bạn]. Đã đăng ký Bản quyền.</p>
+                <p class="text-sm">Thiết kế với <span class="text-red-400 animate-pulse">❤</span> và Tailwind CSS.</p>
+            </div>
+            
+            <!-- Quick Links --><div class="mb-6 md:mb-0">
+                <h4 class="text-xl font-semibold text-white mb-4">Liên Kết Nhanh</h4>
+                <ul class="space-y-2">
+                    <li><a href="#about" class="hover:text-white transition duration-300">Về Tôi</a></li>
+                    <li><a href="#projects" class="hover:text-white transition duration-300">Dự Án</a></li>
+                    <li><a href="#skills" class="hover:text-white transition duration-300">Kỹ Năng</a></li>
+                    <li><a href="#contact" class="hover:text-white transition duration-300">Liên Hệ</a></li>
+                </ul>
+            </div>
+
+            <!-- Social Media Icons --><div>
+                <h4 class="text-xl font-semibold text-white mb-4">Kết Nối Với Tôi</h4>
+                <div class="flex justify-center md:justify-start space-x-6">
+                    <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="footer-social-icon" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="footer-social-icon" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="footer-social-icon" aria-label="Dribbble">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript cho Menu Di Động & Hiệu ứng --><script>
+        // Custom classes for Tailwind
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'fade-in-down': 'fadeInDown 1s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blob-pulse': 'blobPulse 6s infinite ease-in-out',
+                        'bounce-h': 'bounce-h 1s infinite',
+                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        },
+                        fadeInDown: {
+                            '0%': { opacity: 0, transform: 'translateY(-20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' },
+                        },
+                        blobPulse: {
+                            '0%, 100%': { transform: 'scale(105%)', opacity: '0.6' },
+                            '50%': { transform: 'scale(110%)', opacity: '0.8' },
+                        },
+                        'bounce-h': {
+                            '0%, 100%': { transform: 'translateX(-25%)' },
+                            '50%': { transform: 'translateX(0)' },
+                        },
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                    }
+                }
+            }
+        };
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinksMobile = mobileMenu.querySelectorAll('a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.innerHTML = mobileMenu.classList.contains('hidden')
+                ? `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`
+                : `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+        });
+
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.innerHTML = `<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
+            });
+        });
+
+        // Sticky Header Shrink (Optional)
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) { // Adjust scroll threshold as needed
+                header.classList.add('py-2');
+                header.classList.remove('py-4');
+            } else {
+                header.classList.remove('py-2');
+                header.classList.add('py-4');
+            }
+        });
+
+        // Typing Effect for Job Title
+        const jobTitles = ["[Lập trình viên Web]", "[Nhà thiết kế UI/UX]", "[Kỹ sư phần mềm]", "[Chuyên gia Frontend]"]; // Customize your job titles
+        let titleIndex = 0;
+        let charIndex = 0;
+        const jobTitleElement = document.getElementById('job-title');
+        let isDeleting = false;
+        let typingSpeed = 150; // milliseconds per character
+
+        function typeEffect() {
+            const currentTitle = jobTitles[titleIndex];
+            if (isDeleting) {
+                jobTitleElement.textContent = currentTitle.substring(0, charIndex--);
+            } else {
+                jobTitleElement.textContent = currentTitle.substring(0, charIndex++);
+            }
+
+            let delay = typingSpeed;
+
+            if (!isDeleting && charIndex === currentTitle.length + 1) {
+                delay = 2000; // Pause at end of typing
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                titleIndex = (titleIndex + 1) % jobTitles.length;
+                delay = 500; // Pause before typing next title
+            } else if (isDeleting) {
+                delay /= 2; // Faster deleting
+            }
+
+            setTimeout(typeEffect, delay);
+        }
+
+        // Intersection Observer for Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.1 // 10% of element visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // Start typing effect when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            typeEffect();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <!-- Custom CSS Classes for easier styling --><style>
+        .nav-link {
+            @apply text-lg font-medium text-gray-700 hover:text-violet-700 transition duration-300 relative;
+        }
+        .nav-link::after {
+            content: '';
+            @apply absolute left-0 bottom-0 w-full h-[2px] bg-violet-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300;
+        }
+        .mobile-nav-link {
+            @apply block text-gray-700 hover:bg-violet-50 px-6 py-3 border-b border-gray-100;
+        }
+        .btn-primary {
+            @apply bg-gradient-to-r from-violet-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300;
+        }
+        .btn-secondary {
+            @apply bg-white text-violet-600 border border-violet-600 px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300;
+        }
+        .section-title {
+            @apply text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 relative;
+        }
+        .section-title::after {
+            content: '';
+            @apply absolute left-1/2 -translate-x-1/2 bottom-[-10px] w-20 h-2 bg-violet-500 rounded-full;
+        }
+        .skill-tag {
+            @apply bg-gradient-to-br from-violet-100 to-indigo-100 text-violet-700 text-base font-medium px-5 py-2 rounded-full shadow-sm hover:scale-105 transition duration-200 cursor-pointer;
+        }
+        .form-input {
+            @apply w-full px-5 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-violet-200 focus:border-violet-500 transition duration-200;
+        }
+        .footer-social-icon {
+            @apply text-gray-500 hover:text-white transition duration-300 text-3xl;
+        }
+
+        /* Delay for reveal animations */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+    </style>
+</body>
+</html>
