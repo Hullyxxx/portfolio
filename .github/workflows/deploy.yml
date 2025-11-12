@@ -61,4 +61,4 @@ jobs:
             docker rm my-portfolio-app || true
             
             # Chạy container mới
-            docker run -d -p 8080:80 --name my-portfolio-app ${{ secrets.DOCKER_USERNAME }}/my-portfolio:latest
+            docker run -d -p 80:80 --name my-portfolio-app ${{ secrets.DOCKER_USERNAME }}/my-portfolio:latest
