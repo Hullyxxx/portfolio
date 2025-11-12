@@ -5,6 +5,8 @@ name: CI/CD Docker Portfolio
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   # Job 1: Build và đẩy image lên Docker Hub
@@ -37,6 +39,10 @@ jobs:
     # Chạy sau khi 'build-and-push' hoàn thành
     needs: build-and-push 
     runs-on: ubuntu-latest
+
+    # Chỉ chạy job 'deploy' nếu sự kiện là 'push' vào nhánh 'main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
     steps:
       - name: Deploy to Server
         # Sử dụng action SSH
@@ -55,4 +61,4 @@ jobs:
             docker rm my-portfolio-app || true
             
             # Chạy container mới
-            docker run -d -p 8080:80 --name my-portfolio-app ${{ secrets.DOCKER_USERNAME }}/my-portfolio:latest
+            docker run -d -p 80:80 --name my-portfolio-app ${{ secrets.DOCKER_USERNAME }}/my-portfolio:latest
